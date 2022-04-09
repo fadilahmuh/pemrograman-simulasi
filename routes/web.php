@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
 
-Route::get('/test', [MainController::class, 'index']);
-Route::get('/test2', [MainController::class, 'index2']);
+Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/input', [MainController::class, 'input'])->name('input');
+Route::post('/manual-result', [MainController::class, 'manual'])->name('manual-result');
+
+Route::get('/test', [MainController::class, 'index2']);
+// Route::get('/test2', [MainController::class, 'index2']);
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

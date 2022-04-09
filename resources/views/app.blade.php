@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
 
-    <title>Pemrograman Simulasi: Montecarlo</title>    
+    <title>@isset($title){{$title}} -@endisset Pemrograman Simulasi: Montecarlo</title>    
 
     <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap/css/bootstrap.min.css') }}">
@@ -30,25 +30,31 @@
             <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
           </ul>
         </form>
-        <ul class="navbar-nav navbar-right">          
+        <ul class="navbar-nav navbar-right">        
+          @auth
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-              <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-              <div class="d-sm-none d-lg-inline-block">Hi,</div></a>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a href="" class="dropdown-item has-icon">
-                  <i class="far fa-user"></i> Profile
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="" class="dropdown-item has-icon text-danger"  onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                  <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-                <form id="logout-form" action="" method="POST" class="d-none">
-                  @csrf
-                  </form>
-              </div>
-            </li>
-          </ul>
+            <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+            <div class="d-sm-none d-lg-inline-block">Hi, {{Auth::user()->name}}</div></a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="" class="dropdown-item has-icon">
+                <i class="far fa-user"></i> Profile
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="" class="dropdown-item has-icon text-danger"  onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+                </form>
+            </div>
+          </li>
+          @else
+          <li>
+            <a href="{{ route('login') }}" class="nav-link">LOGIN</a>
+          </li>
+          @endauth           
+        </ul>
       </nav>
 
       <nav class="navbar navbar-secondary navbar-expand-lg">
@@ -67,46 +73,14 @@
         </div>
       </nav>
 
-      <!-- Main Content -->
-      <div class="main-content">
-        <section class="section">
-          <div class="section-header">
-            <h1>Top Navigation</h1>
-            <div class="section-header-breadcrumb">
-              <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-              <div class="breadcrumb-item"><a href="#">Layout</a></div>
-              <div class="breadcrumb-item">Top Navigation</div>
-            </div>
-          </div>
+      @yield('maincontent')
 
-          <div class="section-body">
-            <h2 class="section-title">This is Example Page</h2>
-            <p class="section-lead">This page is just an example for you to create your own page.</p>
-            <div class="card">
-              <div class="card-header">
-                <h4>Example Card</h4>
-              </div>
-              <div class="card-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              </div>
-              <div class="card-footer bg-whitesmoke">
-                This is card footer
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
       <footer class="main-footer">
         <div class="footer-left">
           Copyright &copy; 2021 
         </div>
         <div class="footer-right">
-          2.3.0
+          1.0
         </div>
       </footer>
     </div>

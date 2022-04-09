@@ -7,6 +7,64 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function index(){
+        $title = 'Home';
+        return view('home', compact('title'));
+    }
+
+    public function input(){
+        $title = 'Manual Input';
+
+        return view('input', compact('title'));
+    }
+
+    public function manual(Request $request){
+        // dd($request->all());
+        $request->all();
+
+        $f = $request->frequensi;
+        $j = (int)$request->jumlah;
+        $r = $request->range;
+        $rand = $request->rand;
+
+        // dd($f, $j, $r, $rand);
+        $final_res = $this->montecarlo($f, $j, $rand);
+
+        // dd($final_res);
+
+        $title = 'Manual Result';
+        return view('result', compact('title','r','j','rand','final_res'));
+    }
+
+    private function montecarlo($frekuensi, $jumlah, $rand){
+
+        $prob = $this->probabilitas($frekuensi);
+
+        $prob_kom = $this->probabilitas_komulatif($prob);
+
+        $batas = $this->batas($prob_kom);
+
+        if($rand = 'reguler'){
+            $bil = $this->acak($jumlah);
+        } elseif($rand = 'lgc'){
+            $bil = $this->random_lcg($jumlah);
+        }
+
+        $prediksi = $this->check_prediksi($frekuensi,$batas[0],$batas[1],$bil);
+
+        $table = [
+            'frekuensi' => $frekuensi,
+            'probabilitas' => $prob,
+            'komulatif' => $prob_kom,
+            'batas_bawah' => $batas[0],
+            'batas_atas' => $batas[1],
+            'angka_acak' => $bil,
+            'hasil' => $prediksi
+        ];
+
+        return $table;
+    }
+
+    public function index2(){
         $f = [18,11,15,12,21];
 
         $prob = $this->probabilitas($f);
@@ -31,12 +89,6 @@ class MainController extends Controller
 
         dd( $table );
     }
-
-    public function index2(){
-        $title = 'Home';
-        return view('app', compact('title'));
-    }
-
 
     function sum($array){
         // $div = count($array);
@@ -88,7 +140,7 @@ class MainController extends Controller
     function acak($banyak){
         $bil = [];
 
-        for ($x = 0; $x <= $banyak; $x++) {
+        for ($x = 0; $x < $banyak; $x++) {
             array_push($bil, $this->rand_float());
         }
 
@@ -100,8 +152,14 @@ class MainController extends Controller
         return mt_rand($st_num*$mul,$end_num*$mul)/$mul;
     }
 
-    function random_lcg($min,$max) {
-        return ($min+lcg_value()*(abs($max-$min)));
+    function random_lcg($banyak) {
+        $bil = [];
+
+        for ($x = 0; $x < $banyak; $x++) {
+            array_push($bil,(0+lcg_value()*(abs(1-0))));
+        }
+
+        return $bil;
     }
 
     function check_prediksi($frekuensi, $batasbawah, $batasatas, $acak){
