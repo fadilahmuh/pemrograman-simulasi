@@ -68,7 +68,7 @@ class MainController extends Controller
 
         // dd($final_res);
 
-        $title = 'Manual Result';
+        $title = 'Result';
         return view('result', compact('title','r','j','rand','final_res'));
     }
 

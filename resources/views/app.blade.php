@@ -66,9 +66,11 @@
             <li class="nav-item  @if(url()->current()==route('import')) active @endif">
                 <a href="{{ route('import') }}" class="nav-link"><i class="fas fa-file-csv"></i><span>CSV Import</span></a>
             </li>
+            @auth
             <li class="nav-item  @if(url()->current()==route('history')) active @endif">
               <a href="{{ route('history') }}" class="nav-link"><i class="fas fa-history"></i><span>History</span></a>
-          </li>
+            </li> 
+            @endauth
           </ul>
         </div>
       </nav>
