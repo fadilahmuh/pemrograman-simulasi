@@ -50,7 +50,7 @@ class DataController extends Controller
             // 'content' => $request->A,
             'csvfile' => $uniq.'.'.$request->csv->getClientOriginalExtension()
         ]);
-        $request->csv->move('result/', $uniq.'.'.$request->csv->getClientOriginalExtension());
+        $request->csv->move('result-file/', $uniq.'.'.$request->csv->getClientOriginalExtension());
 
         return redirect()->route('home')->with('success','Data berhasil disimpan');
     }
@@ -107,7 +107,7 @@ class DataController extends Controller
         $input = [];
         $result = [];
         $row = 1;
-        $file_handle = fopen(public_path('result\\'.$data_his->csvfile), 'r');
+        $file_handle = fopen(public_path('result-file\\'.$data_his->csvfile), 'r');
         while (($data = fgetcsv($file_handle, 0, ",")) !== FALSE) {
             $num = count($data);
             $row++;
