@@ -107,7 +107,7 @@ class DataController extends Controller
         $input = [];
         $result = [];
         $row = 1;
-        $file_handle = fopen(public_path('result-file\\'.$data_his->csvfile), 'r');
+        $file_handle = fopen(public_path('result-file/'.$data_his->csvfile), 'r');
         while (($data = fgetcsv($file_handle, 0, ",")) !== FALSE) {
             $num = count($data);
             $row++;
