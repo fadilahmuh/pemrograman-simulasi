@@ -103,9 +103,6 @@ class DataController extends Controller
     public function view_data($uniq)
     {
         $data_his = Data::where('uniq_id',$uniq)->first();
-        // dd($data);
-        // $path = Storage::path('result/'.$data->csvfile);
-        // dd();
 
         $input = [];
         $result = [];
@@ -114,13 +111,6 @@ class DataController extends Controller
         while (($data = fgetcsv($file_handle, 0, ",")) !== FALSE) {
             $num = count($data);
             $row++;
-            // for ($c=0; $c < $num; $c++) {
-            //     array_push($result, $data[$c]);
-            // }
-            // if($num == 1){
-            //     echo ('devider');
-            // }
-            // echo($num);
             if($num == 7){
                 array_push($input,$data);
             } elseif ($num == 4){
@@ -129,9 +119,7 @@ class DataController extends Controller
             
         }
         fclose($file_handle);
-        // dd($input,$result);
 
-        // $input = array_shift($input);
         unset($input[0]);
         unset($result[0]);
 

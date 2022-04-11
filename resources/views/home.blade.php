@@ -72,9 +72,33 @@
         </div>
       </div> 
       <div class="align-items-center text-center">
-          <button id="modal-2" class="btn btn-icon icon-left btn-primary">Mulai Simulasi <i class="fas fa-angle-right"></i></button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Mulai Simulasi <i class="fas fa-angle-right"></i></button>
       </div>
     </div>
   </section>
 </div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-body p-4">
+                <div class="row mt-4">
+                  <div class="col-6 text-center align-middle">
+                    <a href="{{ route('input') }}" class="btn btn-icon btn-lg btn-success"><i class="fas fa-table fa-5x" style="font-size: 2rem;"></i></a>
+                    <p>Manual Input</p>
+                  </div>
+                  <div class="col-6 text-center align-middle">
+                    <a href="{{ route('import') }}" class="btn btn-icon btn-lg btn-success"><i class="fas fa-file-csv fa-5x" style="font-size: 2rem;"></i></a>
+                    {{-- <a href="{{ route('input') }}" class="btn btn-icon btn-lg btn-success"><i class="fas fa-file-csv fa-5x" style="font-size: 2rem;"></a> --}}
+                    <p>CSV Import</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+@endsection
+
+@section('scriptlib')
+<script src="{{ asset('assets/modules/prism/prism.js') }} "></script>
 @endsection

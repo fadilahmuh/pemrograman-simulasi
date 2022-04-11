@@ -23,7 +23,7 @@
     <div class="main-wrapper container">
       <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
-        <a href="index.html" class="navbar-brand sidebar-gone-hide">El-Monte</a>
+        <a href="{{ route('home') }}" class="navbar-brand sidebar-gone-hide">El-Monte</a>
         <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
         <form class="form-inline ml-auto">
           <ul class="navbar-nav">
@@ -36,9 +36,6 @@
             <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, {{Auth::user()->name}}</div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="" class="dropdown-item has-icon">
-                <i class="far fa-user"></i> Profile
-              </a>
               <div class="dropdown-divider"></div>
               <a href="" class="dropdown-item has-icon text-danger"  onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">

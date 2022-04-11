@@ -1621,7 +1621,7 @@ h6 .badge {
     color: #f2f2f2;
     padding-left: 15px !important;
     padding-right: 15px !important;
-    /* padding-top: 0 !important; */
+    padding-top: 0 !important;
     padding-bottom: 0 !important;
     height: 100%; }
     .navbar .nav-link.nav-link-lg div {
@@ -1952,7 +1952,7 @@ a.dropdown-item {
   --dark: color(dark); }
 
 body {
-  background-color: #eeeeee;
+  background-color: #fafdfb;
   font-size: 14px;
   font-weight: 400;
   font-family: 'Nunito', 'Segoe UI', arial;
