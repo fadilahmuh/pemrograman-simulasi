@@ -60,15 +60,18 @@
       <nav class="navbar navbar-secondary navbar-expand-lg">
         <div class="container">
           <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a href="#" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
+            <li class="nav-item @if(url()->current()==route('home')) active @endif">
+                <a href="{{ route('home') }}" class="nav-link"><i class="fas fa-home"></i><span>Home</span></a>
               </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link"><i class="fas fa-table"></i><span>Manual Input</span></a>
+            <li class="nav-item  @if(url()->current()==route('input')) active @endif">
+              <a href="{{ route('input') }}" class="nav-link"><i class="fas fa-table"></i><span>Manual Input</span></a>
             </li>
-            <li class="nav-item">
-                <a href="#" class="nav-link"><i class="fas fa-file-csv"></i><span>CSV Import</span></a>
-              </li>
+            <li class="nav-item  @if(url()->current()==route('import')) active @endif">
+                <a href="{{ route('import') }}" class="nav-link"><i class="fas fa-file-csv"></i><span>CSV Import</span></a>
+            </li>
+            <li class="nav-item  @if(url()->current()==route('history')) active @endif">
+              <a href="{{ route('history') }}" class="nav-link"><i class="fas fa-history"></i><span>History</span></a>
+          </li>
           </ul>
         </div>
       </nav>

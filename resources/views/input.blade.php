@@ -7,18 +7,48 @@
     <div class="section-header">
         <h1>Manual Input</h1>
     </div>
-    <form action="{{ route('manual-result') }}" method="POST">
+    <form action="{{ route('result') }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('POST')
     
     <div class="section-body">
+      <h2 class="section-title">Data Frekuensi</h2>
+      
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th id="dat-ran" scope="col" class="text-center"><p id="range-txt" class="d-inline">Minggu</p> ke-</th>
+                <th scope="col" class="text-center">Frekuensi</th>
+                <th scope="col" class="text-center">#</th>
+              </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+            <tfoot>
+              <tr>
+                <td class="text-center" scope="row">x</td>
+                <td class="text-center">
+                  <input id="input-f" type="text" class="form-control">
+                </td>
+                <td class="text-center">
+                  <button id="addBtn" class="btn btn-success">Add</button>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+      
       <h2 class="section-title">Setting</h2>
       <div class="card">
         <div class="card-body">
           <div class="row">
             <div class="form-group col-md-6">
               <label for="inputEmail4">Range Data Frekuensi</label>
-              <select name="range" class="form-control">
+              <select id="input-range" name="range" class="form-control">
                 <option value="Minggu" selected>Per Minggu</option>
                 <option value="Bulan">Per Bulan</option>
                 <option value="Tahun">Per Tahun</option>
@@ -40,35 +70,7 @@
         </div>
       </div>    
 
-      <h2 class="section-title">Data Frekuensi</h2>
-      
-      <div class="card">
-        <div class="card-body">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th id="dat-ran" scope="col" class="text-center">Minggu ke-</th>
-                <th scope="col" class="text-center">Frekuensi</th>
-                <th scope="col" class="text-center">#</th>
-              </tr>
-            </thead>
-            <tbody id="tbody">
-
-            </tbody>
-            <tfoot>
-              <tr>
-                <td class="text-center" scope="row">x</td>
-                <td class="text-center">
-                  <input id="input-f" type="text" class="form-control">
-                </td>
-                <td class="text-center">
-                  <button id="addBtn" class="btn btn-success">Add</button>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-      </div> 
+       
       <div class="align-items-center text-center">
           <button type="submit" class="btn btn-icon icon-left btn-primary">Submit <i class="fas fa-angle-right"></i></button>
       </div>
@@ -85,6 +87,11 @@
 @section('scriptline')
   <script>
   $("input[type='number']").inputSpinner();
+
+  $("#input-range").on('change', function() {
+  // alert( this.value );
+    $('#range-txt').text(this.value);
+  });
 
   var rowIdx = 0;
   

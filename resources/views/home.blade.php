@@ -7,6 +7,18 @@
     <div class="section-header">
         <h1>Home</h1>
     </div>
+      @if($errors->any())
+        @foreach($errors->getMessages() as $this_error)
+        <div class="alert alert-danger" role="alert">
+          <i class="fas fa-exclamation-triangle  mr-3"></i> {{$this_error[0]}}
+        </div> 
+        @endforeach
+      @endif 
+      @if(Session::has('success'))
+      <div class="alert alert-success" role="alert">
+        <i class="fas fa-check mr-3"></i> {{ Session('success') }} 
+      </div>        
+      @endif
     <div class="section-body">
         <div class="row">
             <div class="col-12">
