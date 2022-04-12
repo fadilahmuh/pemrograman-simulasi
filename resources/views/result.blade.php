@@ -31,7 +31,7 @@
               <label class="mt-4" for="inputEmail4">Jenis Random</label>
               <select name="rand" class="form-control" readonly>
                 <option value="reguler" @if($rand == 'reguler') selected @endif>Reguler Random</option>
-                <option value="lgc" @if($rand == 'lgc') selected @endif>LGC Random</option>
+                <option value="lgc" @if($rand == 'lgc') selected @endif>LCG Random</option>
               </select>
             </div>
             <div class="form-group col-md-6">
@@ -41,6 +41,8 @@
               </div>
             </div>
             <input type="file" name="csv" id="file-csv" hidden>
+            <input name="sum" type="text" value="{{$sum}}" hidden>
+            <input name="avg" type="text" value="{{$avg}}" hidden>
           </div>
         </form>
         </div>
@@ -133,6 +135,9 @@
               @endforeach
             </tbody>
           </table>
+          <hr>
+          <p class="lead mt-4">Jumlah Permintaan : {{$sum}}</p>
+          <p class="lead mt-4">Rata-rata Permintaan Per {{$r}} :  {{number_format($avg, 3, '.', '')}} </p>
         </div>
       </div> 
 
@@ -184,18 +189,18 @@
 
   var ctx = document.getElementById("myChart2").getContext('2d');
   var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: d_tks,
       datasets: [{
         label: 'Frekuensi',
         data: hsl,
         borderWidth: 2,
-        backgroundColor: '#6777ef',
         borderColor: '#6777ef',
         borderWidth: 2.5,
         pointBackgroundColor: '#ffffff',
-        pointRadius: 4
+        pointRadius: 4,
+        lineTension: 0
       }]
     },
     options: {

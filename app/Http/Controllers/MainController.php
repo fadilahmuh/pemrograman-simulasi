@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use PHPUnit\Framework\Constraint\Count;
 use PHPUnit\Framework\MockObject\Stub\ReturnSelf;
 
 class MainController extends Controller
@@ -62,6 +63,8 @@ class MainController extends Controller
         $j = (int)$request->jumlah;
         $r = $request->range;
         $rand = $request->rand;
+        $sum = $this->sum($request->frequensi);
+        $avg = $sum / count($request->frequensi);
 
         // dd($f, $j, $r, $rand);
         $final_res = $this->montecarlo($f, $j, $rand);
@@ -69,7 +72,7 @@ class MainController extends Controller
         // dd($final_res);
 
         $title = 'Result';
-        return view('result', compact('title','r','j','rand','final_res'));
+        return view('result', compact('title','r','j','rand','final_res','sum','avg'));
     }
 
     private function montecarlo($frekuensi, $jumlah, $rand){

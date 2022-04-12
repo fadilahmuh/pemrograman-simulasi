@@ -15,6 +15,8 @@ class Data extends Model
         'csvfile',
         'jumlah',
         'range',
-        'random'
+        'random',
+        'sum',
+        'avg'
     ];
 }

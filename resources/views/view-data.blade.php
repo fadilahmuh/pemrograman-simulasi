@@ -31,7 +31,7 @@
               <label class="mt-4" for="inputEmail4">Jenis Random</label>
               <select name="rand" class="form-control" readonly>
                 <option value="reguler" @if($data_his->random == 'reguler') selected @endif>Reguler Random</option>
-                <option value="lgc" @if($data_his->random == 'lgc') selected @endif>LGC Random</option>
+                <option value="lgc" @if($data_his->random == 'lgc') selected @endif>LCG Random</option>
               </select>
             </div>
             <div class="form-group col-md-6">
@@ -99,6 +99,9 @@
               @endforeach
             </tbody>
           </table>
+          <hr>
+          <p class="lead mt-4">Jumlah Permintaan : {{$data_his->sum}}</p>
+          <p class="lead mt-4">Rata-rata Permintaan Per {{$data_his->random}} :  {{$data_his->avg}} </p>
         </div>
       </div> 
 
@@ -145,18 +148,18 @@
 
   var ctx = document.getElementById("myChart2").getContext('2d');
   var myChart = new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: d_tks,
       datasets: [{
         label: 'Frekuensi',
         data: hsl,
         borderWidth: 2,
-        backgroundColor: '#6777ef',
         borderColor: '#6777ef',
         borderWidth: 2.5,
         pointBackgroundColor: '#ffffff',
-        pointRadius: 4
+        pointRadius: 4,
+        lineTension: 0
       }]
     },
     options: {

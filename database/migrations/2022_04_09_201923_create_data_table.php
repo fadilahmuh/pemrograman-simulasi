@@ -21,6 +21,8 @@ class CreateDataTable extends Migration
             $table->integer('jumlah')->nullable(false);
             $table->string('range')->nullable(false);
             $table->string('random')->nullable(false);
+            $table->integer('sum')->nullable(false);
+            $table->float('avg')->nullable(false);
             $table->softDeletes();
             $table->timestamps();
         });

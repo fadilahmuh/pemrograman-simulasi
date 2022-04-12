@@ -47,7 +47,8 @@ class DataController extends Controller
             'range' => $request->range,
             'random' => $request->rand,
             'jumlah' => $request->jumlah,
-            // 'content' => $request->A,
+            'sum' => $request->sum,
+            'avg' => $request->avg,
             'csvfile' => $uniq.'.'.$request->csv->getClientOriginalExtension()
         ]);
         $request->csv->move('result-file/', $uniq.'.'.$request->csv->getClientOriginalExtension());

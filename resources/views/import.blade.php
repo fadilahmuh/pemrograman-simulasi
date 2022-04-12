@@ -50,7 +50,7 @@
               <label class="mt-4" for="inputEmail4">Jenis Random</label>
               <select id="input-rand" name="rand" class="form-control" disabled>
                 <option value="reguler" selected>Reguler Random</option>
-                <option value="lgc">LGC Random</option>
+                <option value="lgc">LCG Random</option>
               </select>
             </div>
             <div class="form-group col-md-6">
