@@ -124,7 +124,16 @@ class DataController extends Controller
         unset($input[0]);
         unset($result[0]);
 
-        return view('view-data',compact('data_his','input','result'));
+        // dd($result[1][3]);
+        $sum =0;
+
+        for ($i=1; $i <= count($result); $i++) { 
+            $sum += $result[$i][3];
+        }
+
+        $avg = $sum / count($result);
+
+        return view('view-data',compact('data_his','input','result','sum','avg'));
     }
 
     function generate_id($limit) {

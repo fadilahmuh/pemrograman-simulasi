@@ -100,8 +100,8 @@
             </tbody>
           </table>
           <hr>
-          <p class="lead mt-4">Jumlah Permintaan : {{$data_his->sum}}</p>
-          <p class="lead mt-4">Rata-rata Permintaan Per {{$data_his->random}} :  {{$data_his->avg}} </p>
+          <p class="lead mt-4">Jumlah Permintaan : {{$sum}}</p>
+          <p class="lead mt-4">Rata-rata Permintaan Per {{$data_his->random}} :  {{$avg}} </p>
         </div>
       </div> 
 

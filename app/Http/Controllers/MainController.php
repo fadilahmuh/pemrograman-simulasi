@@ -49,27 +49,25 @@ class MainController extends Controller
             }
         }
         fclose($file_handle);
-        // dd($result);
+  
         $view =  view('table-import', compact('result'))->render();
 
         return response(['table' => $view]); 
     }
 
     public function result(Request $request){
-        // dd($request->all());
+
         $request->all();
 
         $f = $request->frequensi;
         $j = (int)$request->jumlah;
         $r = $request->range;
         $rand = $request->rand;
-        $sum = $this->sum($request->frequensi);
-        $avg = $sum / count($request->frequensi);
 
-        // dd($f, $j, $r, $rand);
         $final_res = $this->montecarlo($f, $j, $rand);
 
-        // dd($final_res);
+        $sum = $this->sum($final_res['hasil']);
+        $avg = $sum / $j;
 
         $title = 'Result';
         return view('result', compact('title','r','j','rand','final_res','sum','avg'));
@@ -103,32 +101,6 @@ class MainController extends Controller
         ];
 
         return $table;
-    }
-
-    public function index2(){
-        $f = [18,11,15,12,21];
-
-        $prob = $this->probabilitas($f);
-
-        $prob_kom = $this->probabilitas_komulatif($prob);
-
-        $batas = $this->batas($prob_kom);
-
-        $bil = $this->acak(4);
-
-        $prediksi = $this->check_prediksi($f,$batas[0],$batas[1],$bil);
-
-        $table = [
-            'frekuensi' => $f,
-            'probabilitas' => $prob,
-            'komulatif' => $prob_kom,
-            'batas bawah' => $batas[0],
-            'batas atas' => $batas[1],
-            'Angka acak' => $bil,
-            'Hasil' => $prediksi
-        ];
-
-        dd( $table );
     }
 
     function sum($array){
