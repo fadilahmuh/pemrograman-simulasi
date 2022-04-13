@@ -36,7 +36,7 @@
                 <td class="align-middle">{{Str::upper($d->random)}} RANDOM</td>
                 <td class="align-middle">
                   <div class="btn-toolbar justify-content-center" role="group">
-                    <a href="{{ asset('result/'.$d->csvfile) }}" class="btn btn-icon btn-info mr-1" data-toggle="tooltip" data-placement="top" data-original-title="Download CSV" download><i class="fas fa-file-download"></i></a>
+                    <a href="{{ asset('result-file/'.$d->csvfile) }}" class="btn btn-icon btn-info mr-1" data-toggle="tooltip" data-placement="top" data-original-title="Download CSV" download><i class="fas fa-file-download"></i></a>
                     <a href="{{ route('view-data', [$d->uniq_id]) }}" class="btn btn-icon btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="View"><i class="fas fa-eye"></i></a>
                   </div>
                 </td>
